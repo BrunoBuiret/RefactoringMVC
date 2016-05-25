@@ -1,6 +1,9 @@
 import controllers.VivariumController;
 import java.awt.Color;
+import model.CircularTurtle;
 import model.PolygonalTurtle;
+import model.SquareTurtle;
+import model.TriangularTurtle;
 import views.VivariumView;
 
 /**
@@ -32,7 +35,10 @@ public abstract class Main
         java.awt.EventQueue.invokeLater(() ->
         {
             // Initialize turtle
-            PolygonalTurtle theTurtle = new PolygonalTurtle(150., 150., Color.RED, 8, 10);
+            // PolygonalTurtle theTurtle = new PolygonalTurtle(100., 100., Color.RED, 8, 20);
+            // SquareTurtle theTurtle = new SquareTurtle(50., 50., Color.BLUE, 20);
+            // TriangularTurtle theTurtle = new TriangularTurtle(50., 50., Color.ORANGE, 20);
+            CircularTurtle theTurtle = new CircularTurtle(50., 50., Color.GREEN, 50);
             
             // Initialize view and controller
             VivariumView view = new VivariumView();

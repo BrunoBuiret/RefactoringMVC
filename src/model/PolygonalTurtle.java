@@ -70,15 +70,15 @@ public class PolygonalTurtle extends AbstractTurtle
         double angle = 360 / edgesNumber;
         this.shape = new Path2D.Double();
         this.shape.moveTo(
-                x + this.radius,
-                y
+                this.x + this.radius,
+                this.y
             );
         
         for(int i = 1; i <= this.edgesNumber; i++)
         {
             this.shape.lineTo(
-                x + this.radius * Math.cos(angle * i),
-                y + this.radius * Math.sin(angle * i)
+                this.x + this.radius * Math.cos(Math.toRadians(angle) * i),
+                this.y + this.radius * Math.sin(Math.toRadians(angle) * i)
             );
         }
     }
