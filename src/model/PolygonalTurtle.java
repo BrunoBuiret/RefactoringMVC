@@ -101,12 +101,16 @@ public class PolygonalTurtle extends AbstractTurtle
         // Initialize affine transform
         AffineTransform transform = new AffineTransform();
         transform.setToTranslation(
-            this.x + distance * Math.cos(Math.toRadians(this.direction)),
-            this.y + distance * Math.sin(Math.toRadians(this.direction))
+            distance * Math.cos(Math.toRadians(this.direction)),
+            distance * Math.sin(Math.toRadians(this.direction))
         );
         
         // Perform affine transform
         this.shape.transform(transform);
+        
+        // Memorize new coordinates
+        this.x += transform.getTranslateX();
+        this.y += transform.getTranslateY();
         
         // Notify the observers
         this.notifyObservers();
@@ -120,10 +124,13 @@ public class PolygonalTurtle extends AbstractTurtle
     {
         // Initialize affine transform
         AffineTransform transform = new AffineTransform();
-        transform.setToRotation(Math.toRadians(angle));
+        transform.setToRotation(Math.toRadians(angle), this.x, this.y);
         
         // Perform affine transform
         this.shape.transform(transform);
+        
+        // Memorize new direction
+        this.direction = (this.direction - angle) % 360;
         
         // Notify the observers
         this.notifyObservers();
@@ -137,8 +144,5 @@ public class PolygonalTurtle extends AbstractTurtle
     {
         // Make the turtle turn
         this.turnLeft(-angle);
-        
-        // Notify the observers
-        this.notifyObservers();
     }
 }

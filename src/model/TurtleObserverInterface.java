@@ -11,5 +11,5 @@ public interface TurtleObserverInterface
      * 
      * @param t The updated turtle.
      */
-    public void onTortleUpdated(AbstractTurtle t);
+    public void onTurtleUpdated(AbstractTurtle t);
 }

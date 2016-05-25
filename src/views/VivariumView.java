@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package views;
 
 import controllers.VivariumController;
@@ -41,18 +36,29 @@ public class VivariumView extends javax.swing.JFrame
         
         // Attach the new controller
         this.controller = controller;
-        this.turnLeftButton.addActionListener(controller);
-        this.moveForwardButton.addActionListener(controller);
-        this.turnRightButton.addActionListener(controller);
+        this.turnLeftButton.addActionListener(this.controller);
+        this.moveForwardButton.addActionListener(this.controller);
+        this.turnRightButton.addActionListener(this.controller);
     }
     
     /**
+     * Gets a reference to the vivarium in this view.
      * 
-     * @return 
+     * @return A reference to the vivarium.
      */
     public VivariumPanel getVivarium()
     {
         return this.vivarium;
+    }
+    
+    /**
+     * Gets the user's input as a double.
+     * 
+     * @return The user's input as a double.
+     */
+    public double getUserInput()
+    {
+        return Double.parseDouble(this.userInput.getText());
     }
 
     /**
@@ -71,6 +77,7 @@ public class VivariumView extends javax.swing.JFrame
         turnLeftButton = new javax.swing.JButton();
         moveForwardButton = new javax.swing.JButton();
         turnRightButton = new javax.swing.JButton();
+        userInput = new javax.swing.JFormattedTextField();
         vivarium = new views.VivariumPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +91,7 @@ public class VivariumView extends javax.swing.JFrame
 
         turnLeftButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-circle-225-left.png"))); // NOI18N
         turnLeftButton.setText("Tourner à gauche");
+        turnLeftButton.setActionCommand("turn_left");
         turnLeftButton.setFocusable(false);
         turnLeftButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         turnLeftButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -105,12 +113,19 @@ public class VivariumView extends javax.swing.JFrame
         turnRightButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         toolBar.add(turnRightButton);
 
+        userInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        userInput.setText("10");
+        toolBar.add(userInput);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         getContentPane().add(toolBar, gridBagConstraints);
+
+        vivarium.setMinimumSize(new java.awt.Dimension(800, 600));
+        vivarium.setPreferredSize(new java.awt.Dimension(800, 600));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -127,6 +142,7 @@ public class VivariumView extends javax.swing.JFrame
     protected javax.swing.JToolBar toolBar;
     protected javax.swing.JButton turnLeftButton;
     protected javax.swing.JButton turnRightButton;
+    protected javax.swing.JFormattedTextField userInput;
     protected views.VivariumPanel vivarium;
     // End of variables declaration//GEN-END:variables
     protected VivariumController controller;

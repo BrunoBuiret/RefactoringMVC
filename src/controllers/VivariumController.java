@@ -2,7 +2,6 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Set;
 import model.AbstractTurtle;
 import views.VivariumView;
 
@@ -12,13 +11,19 @@ import views.VivariumView;
 public class VivariumController implements ActionListener
 {
     /**
-     * 
+     * A reference to the view being controlled.
      */
     protected VivariumView view;
     
     /**
+     * A reference to the turtle currently in the vivarium.
+     */
+    protected AbstractTurtle theTurtle;
+    
+    /**
+     * Creates a new controller for a vivarium.
      * 
-     * @param view 
+     * @param view The view to control.
      */
     public VivariumController(VivariumView view)
     {
@@ -26,74 +31,52 @@ public class VivariumController implements ActionListener
     }
     
     /**
+     * Creates a new controller for a vivarium.
      * 
-     * @param view
-     * @param turtles 
+     * @param view The view to control.
+     * @param theTurtle The turtle to control.
      */
-    public VivariumController(VivariumView view, Set<AbstractTurtle> turtles)
+    public VivariumController(VivariumView view, AbstractTurtle theTurtle)
     {
         // Initialize properties
         this.view = view;
+        this.theTurtle = theTurtle;
         
-        if(null != turtles)
+        // Add the turtle to the vivarium
+        if(null != this.theTurtle)
         {
-            this.addTurtles(turtles);
+            this.view.getVivarium().addTurtle(this.theTurtle);
         }
     }
     
     /**
+     * Called when an event happens to the view.
      * 
-     * @param t 
-     */
-    public void addTurtle(AbstractTurtle t)
-    {
-        this.view.getVivarium().addTurtle(t);
-    }
-    
-    /**
-     * 
-     * @param turtles 
-     */
-    public void addTurtles(Set<AbstractTurtle> turtles)
-    {
-        this.view.getVivarium().addTurtles(turtles);
-    }
-    
-    /**
-     * 
-     * @param t 
-     */
-    public void removeTurtle(AbstractTurtle t)
-    {
-        this.view.getVivarium().removeTurtle(t);
-    }
-    
-    /**
-     * 
-     */
-    public void removeTurtles()
-    {
-        this.view.getVivarium().removeTurtles();
-    }
-    
-    /**
-     * 
-     * @param e 
+     * @param e The event that happened.
      */
     @Override
     public void actionPerformed(ActionEvent e)
     {
         if(e.getActionCommand().equals("turn_left"))
         {
-            
+            if(null != this.theTurtle)
+            {
+                this.theTurtle.turnLeft(this.view.getUserInput());
+            }
         }
         else if(e.getActionCommand().equals("move_forward"))
         {
-            
+            if(null != this.theTurtle)
+            {
+                this.theTurtle.moveForward(this.view.getUserInput());
+            }
         }
         else if(e.getActionCommand().equals("turn_right"))
         {
-            
+            if(null != this.theTurtle)
+            {
+                this.theTurtle.turnRight(this.view.getUserInput());
+            }
         }
     }
 }

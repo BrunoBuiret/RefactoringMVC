@@ -126,7 +126,7 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
      * @param t The updated turtle.
      */
     @Override
-    public void onTortleUpdated(AbstractTurtle t)
+    public void onTurtleUpdated(AbstractTurtle t)
     {
         // Fire paint event
         this.repaint();

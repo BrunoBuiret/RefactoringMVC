@@ -193,7 +193,7 @@ public abstract class AbstractTurtle
     {
         for(TurtleObserverInterface o : this.observers)
         {
-            o.onTortleUpdated(this);
+            o.onTurtleUpdated(this);
         }
     }
 }

@@ -1,9 +1,9 @@
-
 import controllers.VivariumController;
+import java.awt.Color;
+import model.PolygonalTurtle;
 import views.VivariumView;
 
 /**
- *
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
  */
 public abstract class Main
@@ -31,8 +31,12 @@ public abstract class Main
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() ->
         {
+            // Initialize turtle
+            PolygonalTurtle theTurtle = new PolygonalTurtle(150., 150., Color.RED, 8, 10);
+            
+            // Initialize view and controller
             VivariumView view = new VivariumView();
-            VivariumController controller = new VivariumController(view);
+            VivariumController controller = new VivariumController(view, theTurtle);
             
             view.setController(controller);
             view.setVisible(true);
