@@ -2,6 +2,8 @@ package model.turtles;
 
 import java.awt.Color;
 import java.awt.Shape;
+import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +33,16 @@ public abstract class AbstractTurtle
     protected Color color;
     
     /**
+     * 
+     */
+    protected double sightRadius;
+    
+    /**
+     * 
+     */
+    protected double sightAngle;
+    
+    /**
      * A set of objects observing this turtle.
      */
     protected Set<TurtleObserverInterface> observers;
@@ -40,7 +52,7 @@ public abstract class AbstractTurtle
      */
     public AbstractTurtle()
     {
-        this(0., 0., Color.BLACK);
+        this(0., 0., Color.BLACK, 20., 70.);
     }
     
     /**
@@ -49,14 +61,18 @@ public abstract class AbstractTurtle
      * @param x The turtle's abscissa.
      * @param y The turtle's ordinate.
      * @param color The turtle's color.
+     * @param sightRadius
+     * @param sightAngle
      */
-    public AbstractTurtle(double x, double y, Color color)
+    public AbstractTurtle(double x, double y, Color color, double sightRadius, double sightAngle)
     {
         // Initialize properties;
         this.x = x;
         this.y = y;
-        this.color = color;
         this.direction = -90.;
+        this.color = color;
+        this.sightRadius = sightRadius;
+        this.sightAngle = sightAngle;
         this.observers = new HashSet<>();
     }
     
@@ -78,6 +94,7 @@ public abstract class AbstractTurtle
     public void setX(double x)
     {
         this.x = x;
+        this.notifyObservers();
     }
 
     /**
@@ -98,6 +115,20 @@ public abstract class AbstractTurtle
     public void setY(double y)
     {
         this.y = y;
+        this.notifyObservers();
+    }
+    
+    /**
+     * Sets the turtle's position.
+     * 
+     * @param x The turtle's abscissa.
+     * @param y The turtle's ordinate.
+     */
+    public void setPosition(double x, double y)
+    {
+        this.x = x;
+        this.y = y;
+        this.notifyObservers();
     }
 
     /**
@@ -118,6 +149,7 @@ public abstract class AbstractTurtle
     public void setDirection(double direction)
     {
         this.direction = direction;
+        this.notifyObservers();
     }
 
     /**
@@ -136,6 +168,47 @@ public abstract class AbstractTurtle
      * @return The turtle' shape.
      */
     public abstract Shape getShape();
+    
+    /**
+     * Gets the point at which the turtle's sight begins.
+     * 
+     * @return The sight's beginning point.
+     */
+    public abstract Point2D.Double getSightPoint();
+    
+    /**
+     * 
+     * @return 
+     */
+    public Shape getSight()
+    {
+        // Initialize vars
+        Path2D.Double sight = new Path2D.Double();
+        Point2D.Double sightPoint = this.getSightPoint();
+        
+        sight.moveTo(
+            sightPoint.x,
+            sightPoint.y
+        );
+        sight.lineTo(
+            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360))
+        );
+        sight.curveTo(
+            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.x + sightRadius * Math.cos(Math.toRadians(this.direction)),
+            sightPoint.y + sightRadius * Math.sin(Math.toRadians(this.direction)),
+            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360)),
+            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360))
+        );
+        sight.lineTo(
+            sightPoint.x,
+            sightPoint.y
+        );
+        
+        return sight;
+    }
     
     /**
      * Makes the turtle move forward.

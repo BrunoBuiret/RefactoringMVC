@@ -32,6 +32,7 @@ public class VivariumView extends javax.swing.JFrame
             this.turnLeftButton.removeActionListener(this.controller);
             this.moveForwardButton.removeActionListener(this.controller);
             this.turnRightButton.removeActionListener(this.controller);
+            this.vivarium.removeComponentListener(this.controller);
         }
         
         // Attach the new controller
@@ -39,6 +40,7 @@ public class VivariumView extends javax.swing.JFrame
         this.turnLeftButton.addActionListener(this.controller);
         this.moveForwardButton.addActionListener(this.controller);
         this.turnRightButton.addActionListener(this.controller);
+        this.vivarium.addComponentListener(this.controller);
     }
     
     /**

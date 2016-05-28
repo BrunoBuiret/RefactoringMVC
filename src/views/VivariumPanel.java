@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JPanel;
@@ -114,8 +116,28 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
             // Draw every turtle
             for(AbstractTurtle turtle : this.turtles)
             {
+                // Draw the turtle's shape
                 graphics.setColor(turtle.getColor());
                 graphics.fill(turtle.getShape());
+                
+                // Draw the turtle's sight
+                graphics.setColor(Color.BLACK);
+                graphics.draw(turtle.getSight());
+                
+                // Draw the turtle's coordinates
+                graphics.setColor(Color.CYAN);
+                graphics.drawLine(
+                    (int) turtle.getX() - 10,
+                    (int) turtle.getY(),
+                    (int) turtle.getX() + 10,
+                    (int) turtle.getY()
+                );
+                graphics.drawLine(
+                    (int) turtle.getX(),
+                    (int) turtle.getY() - 10,
+                    (int) turtle.getX(),
+                    (int) turtle.getY() + 10
+                );
             }
         }
     }

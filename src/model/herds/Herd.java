@@ -2,21 +2,22 @@ package model.herds;
 
 import model.turtles.AbstractTurtle;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 /**
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
  */
-public class Herd
+public class Herd implements Iterable<AbstractTurtle>
 {
     /**
-     * 
+     * The turtles composing the herd.
      */
     protected Set<AbstractTurtle> turtles;
     
     /**
-     * 
+     * Creates a new empty herd of turtles.
      */
     public Herd()
     {
@@ -24,8 +25,9 @@ public class Herd
     }
     
     /**
+     * Creates a new herd with existing turtles.
      * 
-     * @param turtles 
+     * @param turtles The turtles composing the herd.
      */
     public Herd(Set<AbstractTurtle> turtles)
     {
@@ -34,8 +36,9 @@ public class Herd
     }
     
     /**
+     * Adds a single turtle to the herd.
      * 
-     * @param turtle 
+     * @param turtle The turtle to add.
      */
     public void addTurtle(AbstractTurtle turtle)
     {
@@ -43,8 +46,9 @@ public class Herd
     }
     
     /**
-     * 
-     * @param turtles 
+     * Adds a collection of turtles to the herd.
+     *
+     * @param turtles The turtles to add.
      */
     public void addTurtles(List<AbstractTurtle> turtles)
     {
@@ -52,8 +56,9 @@ public class Herd
     }
     
     /**
+     * Removes a single turtle from the herd.
      * 
-     * @param turtle 
+     * @param turtle The turtle to remove.
      */
     public void removeTurtle(AbstractTurtle turtle)
     {
@@ -61,10 +66,19 @@ public class Herd
     }
     
     /**
-     * 
+     * Removes every turtle from the herd.
      */
     public void removeTurtles()
     {
         this.turtles.clear();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterator<AbstractTurtle> iterator()
+    {
+        return this.turtles.iterator();
     }
 }

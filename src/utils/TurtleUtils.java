@@ -37,8 +37,10 @@ public abstract class TurtleUtils
                     vivariumDimension.width * randomizer.nextDouble(),
                     vivariumDimension.height * randomizer.nextDouble(),
                     colors[randomizer.nextInt(colors.length)],
+                    60 + 40 * randomizer.nextDouble(),
+                    45 + 55 * randomizer.nextDouble(),
                     5 + randomizer.nextInt(10),
-                    5 + randomizer.nextDouble() * 10
+                    5 + 10 * randomizer.nextDouble()
                 );
             break;
 
@@ -48,7 +50,9 @@ public abstract class TurtleUtils
                     vivariumDimension.width * randomizer.nextDouble(),
                     vivariumDimension.height * randomizer.nextDouble(),
                     colors[randomizer.nextInt(colors.length)],
-                    3 + randomizer.nextInt(12)
+                    60 + 40 * randomizer.nextDouble(),
+                    45 + 55 * randomizer.nextDouble(),
+                    10 + randomizer.nextInt(12)
                 );
             break;
 
@@ -58,7 +62,9 @@ public abstract class TurtleUtils
                     vivariumDimension.width * randomizer.nextDouble(),
                     vivariumDimension.height * randomizer.nextDouble(),
                     colors[randomizer.nextInt(colors.length)],
-                    6 + randomizer.nextInt(12)
+                    60 + 40 * randomizer.nextDouble(),
+                    45 + 55 * randomizer.nextDouble(),
+                    10 + randomizer.nextInt(12)
                 );
             break;
 
@@ -68,7 +74,9 @@ public abstract class TurtleUtils
                     vivariumDimension.width * randomizer.nextDouble(),
                     vivariumDimension.height * randomizer.nextDouble(),
                     colors[randomizer.nextInt(colors.length)],
-                    3 + 20 * randomizer.nextDouble()
+                    60 + 40 * randomizer.nextDouble(),
+                    45 + 55 * randomizer.nextDouble(),
+                    5 + 20 * randomizer.nextDouble()
                 );
             break;
         }

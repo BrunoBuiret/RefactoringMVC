@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
+import java.awt.geom.Point2D;
 
 /**
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
@@ -30,7 +31,7 @@ public class PolygonalTurtle extends AbstractTurtle
      */
     public PolygonalTurtle()
     {
-        this(0., 0., Color.BLACK, 8, 5.);
+        this(0., 0., Color.BLACK, 20., 70., 8, 5.);
     }
     
     /**
@@ -39,13 +40,15 @@ public class PolygonalTurtle extends AbstractTurtle
      * @param x The turtle's abscissa.
      * @param y The turtle's ordinate.
      * @param color The turtle's color.
+     * @param sightRadius
+     * @param sightAngle
      * @param edgesNumber The shape's number of edges.
      * @param radius The shape's radius.
      */
-    public PolygonalTurtle(double x, double y, Color color, int edgesNumber, double radius)
+    public PolygonalTurtle(double x, double y, Color color, double sightRadius, double sightAngle, int edgesNumber, double radius)
     {
         // Call super constructor
-        super(x, y, color);
+        super(x, y, color, sightRadius, sightAngle);
         
         // Perform some checks
         if(edgesNumber <= 0)
@@ -87,9 +90,72 @@ public class PolygonalTurtle extends AbstractTurtle
      * {@inheritDoc}
      */
     @Override
+    public void setX(double x)
+    {
+        // Initialize affine transform
+        AffineTransform transform = new AffineTransform();
+        transform.setToTranslation(x - this.x, 0);
+        
+        // Perform affine transform
+        this.shape.transform(transform);
+        
+        // Memorize new abscissa
+        super.setX(x);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setY(double y)
+    {
+        // Initialize affine transform
+        AffineTransform transform = new AffineTransform();
+        transform.setToTranslation(0, y - this.y);
+        
+        // Perform affine transform
+        this.shape.transform(transform);
+        
+        // Memorize new ordinate
+        super.setY(y);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setPosition(double x, double y)
+    {
+        // Initialize affine transform
+        AffineTransform transform = new AffineTransform();
+        transform.setToTranslation(x - this.x, y - this.y);
+        
+        // Perform affine transform
+        this.shape.transform(transform);
+        
+        // Memorize new ordinate
+        super.setPosition(x, y);
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Shape getShape()
     {
         return this.shape;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Point2D.Double getSightPoint()
+    {
+        return new Point2D.Double(
+            this.x + this.radius * Math.cos(Math.toRadians(this.direction)),
+            this.y + this.radius * Math.sin(Math.toRadians(this.direction))
+        );
     }
 
     /**
