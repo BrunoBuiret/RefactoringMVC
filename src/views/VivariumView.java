@@ -99,6 +99,7 @@ public class VivariumView extends javax.swing.JFrame
         moveForwardButton = new javax.swing.JButton();
         turnRightButton = new javax.swing.JButton();
         userInput = new javax.swing.JFormattedTextField();
+        debugCheckbox = new javax.swing.JCheckBox();
         vivarium = new views.VivariumPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,6 +144,19 @@ public class VivariumView extends javax.swing.JFrame
         userInput.setEnabled(false);
         toolBar.add(userInput);
 
+        debugCheckbox.setText("Débogage");
+        debugCheckbox.setFocusable(false);
+        debugCheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        debugCheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        debugCheckbox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                debugCheckboxActionPerformed(evt);
+            }
+        });
+        toolBar.add(debugCheckbox);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -163,7 +177,17 @@ public class VivariumView extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * 
+     * @param evt 
+     */
+    private void debugCheckboxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_debugCheckboxActionPerformed
+    {//GEN-HEADEREND:event_debugCheckboxActionPerformed
+        this.vivarium.setDebug(this.debugCheckbox.isSelected());
+    }//GEN-LAST:event_debugCheckboxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JCheckBox debugCheckbox;
     protected javax.swing.JButton moveForwardButton;
     protected javax.swing.JToolBar toolBar;
     protected javax.swing.JButton turnLeftButton;

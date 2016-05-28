@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Path2D;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JPanel;
@@ -23,6 +21,11 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
     protected Set<AbstractTurtle> turtles;
     
     /**
+     * Indicates if the vivarium should have debug data printed.
+     */
+    protected boolean isDebug;
+    
+    /**
      * Creates a new vivarium panel.
      */
     public VivariumPanel()
@@ -32,6 +35,7 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
         
         // Initialize properties
         this.turtles = new HashSet<>();
+        this.isDebug = false;
     }
     
     /**
@@ -93,6 +97,16 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
     }
     
     /**
+     * 
+     * @param isDebug 
+     */
+    public void setDebug(boolean isDebug)
+    {
+        this.isDebug = isDebug;
+        this.repaint();
+    }
+    
+    /**
      * Paints this panel to represent the vivarium.
      * 
      * @param g The graphics manager.
@@ -104,12 +118,11 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
         
         if(g instanceof Graphics2D)
         {
-            // Get 2D graphics manager
+            // Initialize vars
             Graphics2D graphics = (Graphics2D) g;
-            
-            // Clear drawing sheet
             Dimension panelDimension = this.getSize();
             
+            // Clear drawing sheet
             graphics.setColor(Color.WHITE);
             graphics.fillRect(0, 0, (int) panelDimension.getWidth(), (int) panelDimension.getHeight());
             
@@ -120,24 +133,27 @@ public class VivariumPanel extends JPanel implements TurtleObserverInterface
                 graphics.setColor(turtle.getColor());
                 graphics.fill(turtle.getShape());
                 
-                // Draw the turtle's sight
-                graphics.setColor(Color.BLACK);
-                graphics.draw(turtle.getSight());
-                
-                // Draw the turtle's coordinates
-                graphics.setColor(Color.CYAN);
-                graphics.drawLine(
-                    (int) turtle.getX() - 10,
-                    (int) turtle.getY(),
-                    (int) turtle.getX() + 10,
-                    (int) turtle.getY()
-                );
-                graphics.drawLine(
-                    (int) turtle.getX(),
-                    (int) turtle.getY() - 10,
-                    (int) turtle.getX(),
-                    (int) turtle.getY() + 10
-                );
+                if(this.isDebug)
+                {
+                    // Draw the turtle's sight
+                    graphics.setColor(Color.BLACK);
+                    graphics.draw(turtle.getSight());
+
+                    // Draw the turtle's coordinates
+                    graphics.setColor(Color.CYAN);
+                    graphics.drawLine(
+                        (int) turtle.getX() - 10,
+                        (int) turtle.getY(),
+                        (int) turtle.getX() + 10,
+                        (int) turtle.getY()
+                    );
+                    graphics.drawLine(
+                        (int) turtle.getX(),
+                        (int) turtle.getY() - 10,
+                        (int) turtle.getX(),
+                        (int) turtle.getY() + 10
+                    );
+                }
             }
         }
     }

@@ -88,7 +88,7 @@ public class VivariumController implements ActionListener, ComponentListener
                 Random randomizer = new Random();
                 VivariumPanel vivarium = this.view.getVivarium();
                 RandomBehavior behavior;
-                int turtlesNumber = 5 + randomizer.nextInt(5);
+                int turtlesNumber = 5 + randomizer.nextInt(10);
 
                 for(int i = 0; i < turtlesNumber; i++)
                 {
