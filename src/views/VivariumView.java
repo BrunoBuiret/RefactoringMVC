@@ -42,6 +42,18 @@ public class VivariumView extends javax.swing.JFrame
     }
     
     /**
+     * 
+     * @param enabled 
+     */
+    public void setInterfaceEnabled(boolean enabled)
+    {
+        this.turnLeftButton.setEnabled(enabled);
+        this.moveForwardButton.setEnabled(enabled);
+        this.turnRightButton.setEnabled(enabled);
+        this.userInput.setEnabled(enabled);
+    }
+    
+    /**
      * Gets a reference to the vivarium in this view.
      * 
      * @return A reference to the vivarium.
@@ -58,7 +70,14 @@ public class VivariumView extends javax.swing.JFrame
      */
     public double getUserInput()
     {
-        return Double.parseDouble(this.userInput.getText());
+        try
+        {
+            return Double.parseDouble(this.userInput.getText());
+        }
+        catch(NumberFormatException ex)
+        {
+            return 0;
+        }
     }
 
     /**
@@ -81,6 +100,7 @@ public class VivariumView extends javax.swing.JFrame
         vivarium = new views.VivariumPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Vivarium");
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0};
         layout.rowHeights = new int[] {0, 5, 0};
@@ -92,6 +112,7 @@ public class VivariumView extends javax.swing.JFrame
         turnLeftButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-circle-225-left.png"))); // NOI18N
         turnLeftButton.setText("Tourner à gauche");
         turnLeftButton.setActionCommand("turn_left");
+        turnLeftButton.setEnabled(false);
         turnLeftButton.setFocusable(false);
         turnLeftButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         turnLeftButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -100,6 +121,7 @@ public class VivariumView extends javax.swing.JFrame
         moveForwardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-090.png"))); // NOI18N
         moveForwardButton.setText("Avancer");
         moveForwardButton.setActionCommand("move_forward");
+        moveForwardButton.setEnabled(false);
         moveForwardButton.setFocusable(false);
         moveForwardButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         moveForwardButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -108,6 +130,7 @@ public class VivariumView extends javax.swing.JFrame
         turnRightButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-circle-315.png"))); // NOI18N
         turnRightButton.setText("Tourner à droite");
         turnRightButton.setActionCommand("turn_right");
+        turnRightButton.setEnabled(false);
         turnRightButton.setFocusable(false);
         turnRightButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         turnRightButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -115,6 +138,7 @@ public class VivariumView extends javax.swing.JFrame
 
         userInput.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         userInput.setText("10");
+        userInput.setEnabled(false);
         toolBar.add(userInput);
 
         gridBagConstraints = new java.awt.GridBagConstraints();

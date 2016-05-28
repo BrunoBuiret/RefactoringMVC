@@ -1,9 +1,5 @@
 import controllers.VivariumController;
-import java.awt.Color;
-import model.CircularTurtle;
-import model.PolygonalTurtle;
-import model.SquareTurtle;
-import model.TriangularTurtle;
+import javax.swing.JOptionPane;
 import views.VivariumView;
 
 /**
@@ -34,18 +30,30 @@ public abstract class Main
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() ->
         {
-            // Initialize turtle
-            // PolygonalTurtle theTurtle = new PolygonalTurtle(100., 100., Color.RED, 8, 20);
-            // SquareTurtle theTurtle = new SquareTurtle(50., 50., Color.BLUE, 20);
-            // TriangularTurtle theTurtle = new TriangularTurtle(50., 50., Color.ORANGE, 20);
-            CircularTurtle theTurtle = new CircularTurtle(50., 50., Color.GREEN, 50);
-            
             // Initialize view and controller
             VivariumView view = new VivariumView();
-            VivariumController controller = new VivariumController(view, theTurtle);
+            VivariumController controller = new VivariumController(view);
             
             view.setController(controller);
             view.setVisible(true);
+            
+            // Let the user choose what they want to do
+            String[] options = new String[] {
+                "Observation d'un groupe de tortues",
+                "Contrôle d'une seule tortue"
+            };
+            int selectedOption = JOptionPane.showOptionDialog(
+                view,
+                "Que désirez-vous faire ?",
+                "Choix de l'action",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane. QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]
+            );
+            
+            controller.setMode(selectedOption);
         });
     }
 }

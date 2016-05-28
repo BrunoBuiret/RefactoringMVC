@@ -7,8 +7,8 @@ import java.awt.Graphics2D;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JPanel;
-import model.AbstractTurtle;
-import model.TurtleObserverInterface;
+import model.turtles.AbstractTurtle;
+import model.turtles.TurtleObserverInterface;
 
 /**
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)

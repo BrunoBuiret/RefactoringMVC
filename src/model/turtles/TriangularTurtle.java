@@ -1,16 +1,16 @@
-package model;
+package model.turtles;
 
 import java.awt.Color;
 
 /**
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
  */
-public class SquareTurtle extends PolygonalTurtle
+public class TriangularTurtle extends PolygonalTurtle
 {
     /**
      * Creates a new squarte turtle with the default values.
      */
-    public SquareTurtle()
+    public TriangularTurtle()
     {
         this(0, 0, Color.BLACK, 10.);
     }
@@ -23,8 +23,8 @@ public class SquareTurtle extends PolygonalTurtle
      * @param color The turtle's color.
      * @param edgeSize The size of the square's edge.
      */
-    public SquareTurtle(double x, double y, Color color, double edgeSize)
+    public TriangularTurtle(double x, double y, Color color, double edgeSize)
     {
-        super(x, y, color, 4, Math.sqrt(2 * Math.pow(edgeSize / 2, 2)));
+        super(x, y, color, 3, Math.sqrt(Math.pow(edgeSize, 2) - Math.pow(edgeSize / 2, 2)) / 2);
     }
 }

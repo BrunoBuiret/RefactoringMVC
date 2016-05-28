@@ -1,4 +1,4 @@
-package model;
+package model.turtles;
 
 import java.awt.Color;
 import java.awt.Shape;

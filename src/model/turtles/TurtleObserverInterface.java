@@ -1,4 +1,4 @@
-package model;
+package model.turtles;
 
 /**
  * @author Bruno Buiret (bruno.buiret@etu.univ-lyon1.fr)
