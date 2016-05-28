@@ -1,5 +1,7 @@
 package model.herds;
 
+import java.awt.Shape;
+import java.awt.geom.Area;
 import model.turtles.AbstractTurtle;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -71,6 +73,36 @@ public class Herd implements Iterable<AbstractTurtle>
     public void removeTurtles()
     {
         this.turtles.clear();
+    }
+    
+    /**
+     * Looks for turtles in a specific zone.
+     * 
+     * @param zone The zone to look in.
+     * @param exception A turtle not to take into account.
+     * @return The turtles in this zone.
+     */
+    public Set<AbstractTurtle> getTurtlesIn(Shape zone, AbstractTurtle exception)
+    {
+        // Initialize vars
+        Set<AbstractTurtle> turtlesInZone = new HashSet<>();
+        Area zoneArea = new Area(zone), turtleArea;
+        
+        for(AbstractTurtle turtle : this.turtles)
+        {
+            if(null == exception || !exception.equals(turtle))
+            {
+                turtleArea = new Area(turtle.getShape());
+                turtleArea.intersect(zoneArea);
+
+                if(!turtleArea.isEmpty())
+                {
+                    turtlesInZone.add(turtle);
+                }
+            }
+        }
+        
+        return turtlesInZone;
     }
 
     /**

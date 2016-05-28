@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.behaviors.FlockingBehavior;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -98,7 +99,7 @@ public class VivariumController implements ActionListener, ComponentListener
                     this.theHerd.addTurtle(turtle);
 
                     // And give it a behavior
-                    behavior = new RandomBehavior(this.theHerd, turtle, this.view.getVivarium());
+                    behavior = new FlockingBehavior(this.theHerd, turtle, this.view.getVivarium());
                     behavior.start();
                 }
 

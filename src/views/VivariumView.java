@@ -95,11 +95,11 @@ public class VivariumView extends javax.swing.JFrame
         java.awt.GridBagConstraints gridBagConstraints;
 
         toolBar = new javax.swing.JToolBar();
+        debugCheckbox = new javax.swing.JCheckBox();
         turnLeftButton = new javax.swing.JButton();
         moveForwardButton = new javax.swing.JButton();
         turnRightButton = new javax.swing.JButton();
         userInput = new javax.swing.JFormattedTextField();
-        debugCheckbox = new javax.swing.JCheckBox();
         vivarium = new views.VivariumPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -111,6 +111,19 @@ public class VivariumView extends javax.swing.JFrame
 
         toolBar.setFloatable(false);
         toolBar.setRollover(true);
+
+        debugCheckbox.setText("Débogage");
+        debugCheckbox.setFocusable(false);
+        debugCheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        debugCheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        debugCheckbox.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                debugCheckboxActionPerformed(evt);
+            }
+        });
+        toolBar.add(debugCheckbox);
 
         turnLeftButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-circle-225-left.png"))); // NOI18N
         turnLeftButton.setText("Tourner à gauche");
@@ -143,19 +156,6 @@ public class VivariumView extends javax.swing.JFrame
         userInput.setText("10");
         userInput.setEnabled(false);
         toolBar.add(userInput);
-
-        debugCheckbox.setText("Débogage");
-        debugCheckbox.setFocusable(false);
-        debugCheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        debugCheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        debugCheckbox.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                debugCheckboxActionPerformed(evt);
-            }
-        });
-        toolBar.add(debugCheckbox);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
