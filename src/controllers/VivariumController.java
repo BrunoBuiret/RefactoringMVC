@@ -159,6 +159,10 @@ public class VivariumController implements ActionListener, ComponentListener
                     this.theTurtle.turnRight(this.view.getUserInput());
                 }
             break;
+            
+            case "debug_mode":
+                this.view.getVivarium().setDebug(this.view.isDebug());
+            break;
 
             default:
         }

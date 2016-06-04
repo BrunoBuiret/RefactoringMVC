@@ -29,6 +29,7 @@ public class VivariumView extends javax.swing.JFrame
         // Detach the old controller if there is one
         if(null != this.controller)
         {
+            this.debugCheckbox.removeActionListener(this.controller);
             this.turnLeftButton.removeActionListener(this.controller);
             this.moveForwardButton.removeActionListener(this.controller);
             this.turnRightButton.removeActionListener(this.controller);
@@ -37,6 +38,7 @@ public class VivariumView extends javax.swing.JFrame
         
         // Attach the new controller
         this.controller = controller;
+        this.debugCheckbox.addActionListener(this.controller);
         this.turnLeftButton.addActionListener(this.controller);
         this.moveForwardButton.addActionListener(this.controller);
         this.turnRightButton.addActionListener(this.controller);
@@ -82,6 +84,16 @@ public class VivariumView extends javax.swing.JFrame
             return 0;
         }
     }
+    
+    /**
+     * Gets the debug mode.
+     * 
+     * @return {@code true} if debug mode is enabled, {@code false} otherwise.
+     */
+    public boolean isDebug()
+    {
+        return this.debugCheckbox.isSelected();
+    }
 
     /**
      * This method is called from within the constructor to
@@ -114,16 +126,10 @@ public class VivariumView extends javax.swing.JFrame
         toolBar.setRollover(true);
 
         debugCheckbox.setText("Débogage");
+        debugCheckbox.setActionCommand("debug_mode");
         debugCheckbox.setFocusable(false);
         debugCheckbox.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         debugCheckbox.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        debugCheckbox.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                debugCheckboxActionPerformed(evt);
-            }
-        });
         toolBar.add(debugCheckbox);
 
         turnLeftButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/views/resources/arrow-circle-225-left.png"))); // NOI18N
@@ -177,16 +183,6 @@ public class VivariumView extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * Called when the debug checkbox is clicked on.
-     * 
-     * @param evt The event that happened.
-     */
-    private void debugCheckboxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_debugCheckboxActionPerformed
-    {//GEN-HEADEREND:event_debugCheckboxActionPerformed
-        this.vivarium.setDebug(this.debugCheckbox.isSelected());
-    }//GEN-LAST:event_debugCheckboxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JCheckBox debugCheckbox;

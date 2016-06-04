@@ -77,6 +77,7 @@ public class FlockingBehavior extends RandomBehavior
                     // The turtle isn't too close to the herd so it can go closer
                     this.turtle.setSpeed(speed / turtlesInSight.size());
                     this.turtle.setDirection(direction / turtlesInSight.size());
+                    this.turtle.moveForward(this.turtle.getSpeed());
                 }
                 else
                 {
@@ -84,6 +85,9 @@ public class FlockingBehavior extends RandomBehavior
                     this.turtle.setDirection((this.turtle.getDirection() + 180) % 360);
                     this.turtle.moveForward(this.turtle.getSpeed());
                 }
+                
+                // Make sure the turtle hasn't gone "out" of the vivarium
+                this.checkBounds();
             }
             else
             {

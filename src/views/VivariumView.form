@@ -41,13 +41,11 @@
         <Component class="javax.swing.JCheckBox" name="debugCheckbox">
           <Properties>
             <Property name="text" type="java.lang.String" value="D&#xe9;bogage"/>
+            <Property name="actionCommand" type="java.lang.String" value="debug_mode"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="debugCheckboxActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="turnLeftButton">
           <Properties>

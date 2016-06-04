@@ -5,7 +5,6 @@ import java.awt.geom.Area;
 import model.turtles.AbstractTurtle;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -52,7 +51,7 @@ public class Herd implements Iterable<AbstractTurtle>
      *
      * @param turtles The turtles to add.
      */
-    public void addTurtles(List<AbstractTurtle> turtles)
+    public void addTurtles(Set<AbstractTurtle> turtles)
     {
         this.turtles.addAll(turtles);
     }
@@ -73,6 +72,15 @@ public class Herd implements Iterable<AbstractTurtle>
     public void removeTurtles()
     {
         this.turtles.clear();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Iterator<AbstractTurtle> iterator()
+    {
+        return this.turtles.iterator();
     }
     
     /**
@@ -103,14 +111,5 @@ public class Herd implements Iterable<AbstractTurtle>
         }
         
         return turtlesInZone;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Iterator<AbstractTurtle> iterator()
-    {
-        return this.turtles.iterator();
     }
 }
