@@ -44,7 +44,7 @@ public abstract class AbstractBehavior extends Thread
     }
     
     /**
-     * 
+     * Handles the turtle's behavior.
      */
     @Override
     public abstract void run();

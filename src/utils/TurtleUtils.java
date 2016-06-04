@@ -15,9 +15,11 @@ import model.turtles.TriangularTurtle;
 public abstract class TurtleUtils
 {
     /**
+     * Creates a random turtle.
      * 
-     * @param vivariumDimension
-     * @return 
+     * @param vivariumDimension The vivarium's dimension so as not to place it
+     * out of it.
+     * @return A turtle.
      */
     public static AbstractTurtle createRandomTurtle(Dimension vivariumDimension)
     {
@@ -25,7 +27,7 @@ public abstract class TurtleUtils
         Random randomizer = new Random();
         Color[] colors = new Color[]{
             Color.BLACK, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN,
-            Color.ORANGE, Color.PINK, Color.GRAY, Color.MAGENTA
+            Color.ORANGE, Color.PINK, Color.GRAY, Color.MAGENTA, Color.DARK_GRAY
         };
         AbstractTurtle turtle = null;
         
@@ -34,12 +36,21 @@ public abstract class TurtleUtils
             case 0:
                 // Create a polygonal turtle
                 turtle = new PolygonalTurtle(
+                    // Abscissa
                     vivariumDimension.width * randomizer.nextDouble(),
+                    // Ordinate
                     vivariumDimension.height * randomizer.nextDouble(),
+                    // Color
                     colors[randomizer.nextInt(colors.length)],
+                    // Sight radius
                     60 + 40 * randomizer.nextDouble(),
+                    // Sight angle
                     45 + 55 * randomizer.nextDouble(),
+                    // Speed
+                    20 + 50 * randomizer.nextDouble(),
+                    // Edges number
                     5 + randomizer.nextInt(10),
+                    // Radius
                     5 + 10 * randomizer.nextDouble()
                 );
             break;
@@ -47,36 +58,60 @@ public abstract class TurtleUtils
             case 1:
                 // Create a square turtle
                 turtle = new SquareTurtle(
+                    // Abscissa
                     vivariumDimension.width * randomizer.nextDouble(),
+                    // Ordinate
                     vivariumDimension.height * randomizer.nextDouble(),
+                    // Color
                     colors[randomizer.nextInt(colors.length)],
+                    // Sight radius
                     60 + 40 * randomizer.nextDouble(),
+                    // Sight angle
                     45 + 55 * randomizer.nextDouble(),
-                    10 + randomizer.nextInt(12)
+                    // Speed
+                    20 + 50 * randomizer.nextDouble(),
+                    // Edge size
+                    20 + randomizer.nextInt(12)
                 );
             break;
 
             case 2:
                 // Create a triangular turtle
                 turtle = new TriangularTurtle(
+                    // Abscissa
                     vivariumDimension.width * randomizer.nextDouble(),
+                    // Ordinate
                     vivariumDimension.height * randomizer.nextDouble(),
+                    // Color
                     colors[randomizer.nextInt(colors.length)],
+                    // Sight radius
                     60 + 40 * randomizer.nextDouble(),
+                    // Sight angle
                     45 + 55 * randomizer.nextDouble(),
-                    10 + randomizer.nextInt(12)
+                    // Speed
+                    20 + 50 * randomizer.nextDouble(),
+                    // Edge size
+                    20 + randomizer.nextInt(12)
                 );
             break;
 
             case 3:
                 // Create a circular turtle
                 turtle = new CircularTurtle(
+                    // Abscissa
                     vivariumDimension.width * randomizer.nextDouble(),
+                    // Ordinate
                     vivariumDimension.height * randomizer.nextDouble(),
+                    // Color
                     colors[randomizer.nextInt(colors.length)],
+                    // Sight radius
                     60 + 40 * randomizer.nextDouble(),
+                    // Sight angle
                     45 + 55 * randomizer.nextDouble(),
-                    5 + 20 * randomizer.nextDouble()
+                    // Speed
+                    20 + 50 * randomizer.nextDouble(),
+                    // Radius
+                    10 + 20 * randomizer.nextDouble()
                 );
             break;
         }

@@ -44,8 +44,9 @@ public class VivariumView extends javax.swing.JFrame
     }
     
     /**
+     * Sets if the interface is enabled or not.
      * 
-     * @param enabled 
+     * @param enabled {@code true} to enable the interface, {@code false} otherwise.
      */
     public void setInterfaceEnabled(boolean enabled)
     {
@@ -178,8 +179,9 @@ public class VivariumView extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Called when the debug checkbox is clicked on.
      * 
-     * @param evt 
+     * @param evt The event that happened.
      */
     private void debugCheckboxActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_debugCheckboxActionPerformed
     {//GEN-HEADEREND:event_debugCheckboxActionPerformed

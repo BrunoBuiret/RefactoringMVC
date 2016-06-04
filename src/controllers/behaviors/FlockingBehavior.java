@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.herds.Herd;
 import model.turtles.AbstractTurtle;
+import utils.DistanceUtils;
 import views.VivariumPanel;
 
 /**
@@ -39,7 +40,8 @@ public class FlockingBehavior extends RandomBehavior
         // Initialize vars
         Random randomizer = new Random();
         Set<AbstractTurtle> turtlesInSight;
-        double direction, speed;
+        double direction, speed, x, y;
+        boolean tooClose;
         
         while(true)
         {
@@ -48,18 +50,40 @@ public class FlockingBehavior extends RandomBehavior
             
             if(!turtlesInSight.isEmpty())
             {
-                // Modify speed and direction
+                // Reset vars
                 speed = 0.;
                 direction = 0.;
+                x = 0.;
+                y = 0.;
+                tooClose = false;
                 
+                // Analyse the herd
                 for(AbstractTurtle aTurtle : turtlesInSight)
                 {
-                    // speed += aTurtle.getSpeed();
+                    speed += aTurtle.getSpeed();
                     direction += aTurtle.getDirection();
+                    x += aTurtle.getX();
+                    y += aTurtle.getY();
+                    
+                    if(DistanceUtils.computeDistance(this.turtle.getPosition(), aTurtle.getPosition()) <= FlockingBehavior.MINIMUM_DISTANCE)
+                    {
+                        tooClose = true;
+                    }
                 }
                 
-                // this.turtle.setSpeed(speed / turtlesInSight.size());
-                this.turtle.setDirection(direction / turtlesInSight.size());
+                // Make the turtle do something
+                if(!tooClose)
+                {
+                    // The turtle isn't too close to the herd so it can go closer
+                    this.turtle.setSpeed(speed / turtlesInSight.size());
+                    this.turtle.setDirection(direction / turtlesInSight.size());
+                }
+                else
+                {
+                    // The turtle is too close to the herd, make it go back
+                    this.turtle.setDirection((this.turtle.getDirection() + 180) % 360);
+                    this.turtle.moveForward(this.turtle.getSpeed());
+                }
             }
             else
             {

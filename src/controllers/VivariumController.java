@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import controllers.behaviors.RandomBehavior;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Rectangle2D;
@@ -21,12 +20,17 @@ import views.VivariumView;
 public class VivariumController implements ActionListener, ComponentListener
 {
     /**
-     *
+     * An unknown mode for the vivarium.
+     */
+    public static final int MODE_UNKNOWN = -1;
+    
+    /**
+     * A herd of turtles is going to be observed in the vivarium.
      */
     public static final int MODE_OBSERVATION = 0;
 
     /**
-     *
+     * A single turtle is going to be controlled by the user.
      */
     public static final int MODE_CONTROL = 1;
 
@@ -66,29 +70,31 @@ public class VivariumController implements ActionListener, ComponentListener
         // Initialize properties
         this.view = view;
         this.theTurtle = null;
-        this.theHerd = null;
+        this.theHerd = new Herd();
     }
 
     /**
-     *
-     * @param mode
+     * Sets the vivarium's mode.
+     * Two modes are available: an observation one, {@code VivariumController.MODE_OBSERVATION},
+     * to show a flocking behavior, and another, {@code VivariumController.MODE_CONTROL},
+     * meant to control a single turtle.
+     * 
+     * @param mode The vivarium's mode.
      */
     public void setMode(int mode)
     {
-        // Initialize properties
-        this.theHerd = new Herd();
-
         // Initialize vars
         Dimension vivariumDimension = this.view.getVivarium().getSize();
 
         switch(mode)
         {
             case VivariumController.MODE_OBSERVATION:
+            case VivariumController.MODE_UNKNOWN:
                 // Add turtles to the herd
                 AbstractTurtle turtle;
                 Random randomizer = new Random();
                 VivariumPanel vivarium = this.view.getVivarium();
-                RandomBehavior behavior;
+                FlockingBehavior behavior;
                 int turtlesNumber = 5 + randomizer.nextInt(10);
 
                 for(int i = 0; i < turtlesNumber; i++)

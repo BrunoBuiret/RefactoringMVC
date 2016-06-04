@@ -65,7 +65,7 @@ public class RandomBehavior extends AbstractBehavior
         {
             case 0:
                 // Move forward
-                this.turtle.moveForward(5/* * randomizer.nextDouble()*/);
+                this.turtle.moveForward(this.turtle.getSpeed());
             break;
 
             case 1:

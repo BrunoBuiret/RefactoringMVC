@@ -25,7 +25,7 @@ public class CircularTurtle extends AbstractTurtle
      */
     public CircularTurtle()
     {
-        this(0., 0., Color.BLACK, 5., 20., 70.);
+        this(0., 0., Color.BLACK, 5., 20., 30., 70.);
     }
     
     /**
@@ -34,14 +34,15 @@ public class CircularTurtle extends AbstractTurtle
      * @param x The turtle's abscissa.
      * @param y The turtle's ordinate.
      * @param color The turtle's color.
-     * @param sightRadius
-     * @param sightAngle
+     * @param sightRadius The turtle's sight's radius.
+     * @param sightAngle The turtle's sight's angle.
+     * @param speed The turtle's speed.
      * @param radius The shape's radius.
      */
-    public CircularTurtle(double x, double y, Color color, double sightRadius, double sightAngle, double radius)
+    public CircularTurtle(double x, double y, Color color, double sightRadius, double sightAngle, double speed, double radius)
     {
         // Call super constructor
-        super(x, y, color, sightRadius, sightAngle);
+        super(x, y, color, sightRadius, sightAngle, speed);
         
         // Perform some checks
         if(radius <= 0)
@@ -116,7 +117,7 @@ public class CircularTurtle extends AbstractTurtle
      * {@inheritDoc}
      */
     @Override
-    public Point2D.Double getSightPoint()
+    protected Point2D.Double getSightPoint()
     {
         return new Point2D.Double(
             this.x + this.radius * Math.cos(Math.toRadians(this.direction)),

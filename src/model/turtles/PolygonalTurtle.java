@@ -31,7 +31,7 @@ public class PolygonalTurtle extends AbstractTurtle
      */
     public PolygonalTurtle()
     {
-        this(0., 0., Color.BLACK, 20., 70., 8, 5.);
+        this(0., 0., Color.BLACK, 20., 70., 30., 8, 5.);
     }
     
     /**
@@ -40,15 +40,16 @@ public class PolygonalTurtle extends AbstractTurtle
      * @param x The turtle's abscissa.
      * @param y The turtle's ordinate.
      * @param color The turtle's color.
-     * @param sightRadius
-     * @param sightAngle
+     * @param sightRadius The turtle's sight's radius.
+     * @param sightAngle The turtle's sight's angle.
+     * @param speed The turtle's speed.
      * @param edgesNumber The shape's number of edges.
      * @param radius The shape's radius.
      */
-    public PolygonalTurtle(double x, double y, Color color, double sightRadius, double sightAngle, int edgesNumber, double radius)
+    public PolygonalTurtle(double x, double y, Color color, double sightRadius, double sightAngle, double speed, int edgesNumber, double radius)
     {
         // Call super constructor
-        super(x, y, color, sightRadius, sightAngle);
+        super(x, y, color, sightRadius, sightAngle, speed);
         
         // Perform some checks
         if(edgesNumber <= 0)

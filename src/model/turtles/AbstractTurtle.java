@@ -33,14 +33,21 @@ public abstract class AbstractTurtle
     protected Color color;
     
     /**
-     * 
+     * The turtle's sight's radius.
+     * This represents how far the turtle can see.
      */
     protected double sightRadius;
     
     /**
-     * 
+     * The turtle's sight's angle.
+     * This represents the sight's width.
      */
     protected double sightAngle;
+    
+    /**
+     * The turtle's speed.
+     */
+    protected double speed;
     
     /**
      * A set of objects observing this turtle.
@@ -52,7 +59,7 @@ public abstract class AbstractTurtle
      */
     public AbstractTurtle()
     {
-        this(0., 0., Color.BLACK, 20., 70.);
+        this(0., 0., Color.BLACK, 20., 70., 30.);
     }
     
     /**
@@ -61,10 +68,11 @@ public abstract class AbstractTurtle
      * @param x The turtle's abscissa.
      * @param y The turtle's ordinate.
      * @param color The turtle's color.
-     * @param sightRadius
-     * @param sightAngle
+     * @param sightRadius The turtle's sight's radius.
+     * @param sightAngle The turtle's sight's angle.
+     * @param speed The turtle's speed.
      */
-    public AbstractTurtle(double x, double y, Color color, double sightRadius, double sightAngle)
+    public AbstractTurtle(double x, double y, Color color, double sightRadius, double sightAngle, double speed)
     {
         // Initialize properties;
         this.x = x;
@@ -73,6 +81,7 @@ public abstract class AbstractTurtle
         this.color = color;
         this.sightRadius = sightRadius;
         this.sightAngle = sightAngle;
+        this.speed = speed;
         this.observers = new HashSet<>();
     }
     
@@ -116,6 +125,28 @@ public abstract class AbstractTurtle
     {
         this.y = y;
         this.notifyObservers();
+    }
+    
+    /**
+     * Gets the turtle's position.
+     * 
+     * @return The turtle's position.
+     * @todo Optimize this method, maybe, replace the x and y properties with
+     * this point.
+     */
+    public Point2D.Double getPosition()
+    {
+        return new Point2D.Double(this.x, this.y);
+    }
+    
+    /**
+     * Sets the turtle's position.
+     * 
+     * @param position The turtle's position.
+     */
+    public void setPosition(Point2D.Double position)
+    {
+        this.setPosition(position.x, position.y);
     }
     
     /**
@@ -174,11 +205,14 @@ public abstract class AbstractTurtle
      * 
      * @return The sight's beginning point.
      */
-    public abstract Point2D.Double getSightPoint();
+    protected abstract Point2D.Double getSightPoint();
     
     /**
+     * Gets the turtle's sight area.
      * 
-     * @return 
+     * @return The turtle's sight area.
+     * @todo Optimize this method by memorizing the sight as a property and
+     * making it move as the turtle does.
      */
     public Shape getSight()
     {
@@ -191,16 +225,16 @@ public abstract class AbstractTurtle
             sightPoint.y
         );
         sight.lineTo(
-            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
-            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360))
+            sightPoint.x + this.sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.y + this.sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360))
         );
         sight.curveTo(
-            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
-            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
-            sightPoint.x + sightRadius * Math.cos(Math.toRadians(this.direction)),
-            sightPoint.y + sightRadius * Math.sin(Math.toRadians(this.direction)),
-            sightPoint.x + sightRadius * Math.cos(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360)),
-            sightPoint.y + sightRadius * Math.sin(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360))
+            sightPoint.x + this.sightRadius * Math.cos(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.y + this.sightRadius * Math.sin(Math.toRadians((this.direction - (this.sightAngle / 2)) % 360)),
+            sightPoint.x + this.sightRadius * Math.cos(Math.toRadians(this.direction)),
+            sightPoint.y + this.sightRadius * Math.sin(Math.toRadians(this.direction)),
+            sightPoint.x + this.sightRadius * Math.cos(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360)),
+            sightPoint.y + this.sightRadius * Math.sin(Math.toRadians((this.direction + (this.sightAngle / 2)) % 360))
         );
         sight.lineTo(
             sightPoint.x,
@@ -208,6 +242,26 @@ public abstract class AbstractTurtle
         );
         
         return sight;
+    }
+    
+    /**
+     * Gets the turtle's speed.
+     * 
+     * @return The turtle's speed.
+     */
+    public double getSpeed()
+    {
+        return this.speed;
+    }
+    
+    /**
+     * Sets the turtle's speed.
+     * 
+     * @param speed The turtle's speed.
+     */
+    public void setSpeed(double speed)
+    {
+        this.speed = speed;
     }
     
     /**
