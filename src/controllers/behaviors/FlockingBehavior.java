@@ -40,7 +40,7 @@ public class FlockingBehavior extends RandomBehavior
         // Initialize vars
         Random randomizer = new Random();
         Set<AbstractTurtle> turtlesInSight;
-        double direction, speed, x, y;
+        double direction, speed;
         boolean tooClose;
         
         while(true)
@@ -53,8 +53,6 @@ public class FlockingBehavior extends RandomBehavior
                 // Reset vars
                 speed = 0.;
                 direction = 0.;
-                x = 0.;
-                y = 0.;
                 tooClose = false;
                 
                 // Analyse the herd
@@ -62,8 +60,6 @@ public class FlockingBehavior extends RandomBehavior
                 {
                     speed += aTurtle.getSpeed();
                     direction += aTurtle.getDirection();
-                    x += aTurtle.getX();
-                    y += aTurtle.getY();
                     
                     if(DistanceUtils.computeDistance(this.turtle.getPosition(), aTurtle.getPosition()) <= FlockingBehavior.MINIMUM_DISTANCE)
                     {
@@ -71,20 +67,21 @@ public class FlockingBehavior extends RandomBehavior
                     }
                 }
                 
-                // Make the turtle do something
+                // Change the turtle's speed and/or direction
                 if(!tooClose)
                 {
                     // The turtle isn't too close to the herd so it can go closer
                     this.turtle.setSpeed(speed / turtlesInSight.size());
                     this.turtle.setDirection(direction / turtlesInSight.size());
-                    this.turtle.moveForward(this.turtle.getSpeed());
                 }
                 else
                 {
                     // The turtle is too close to the herd, make it go back
                     this.turtle.setDirection((this.turtle.getDirection() + 180) % 360);
-                    this.turtle.moveForward(this.turtle.getSpeed());
                 }
+                
+                // Then, make the turtle move forward
+                this.turtle.moveForward(this.turtle.getSpeed());
                 
                 // Make sure the turtle hasn't gone "out" of the vivarium
                 this.checkBounds();
