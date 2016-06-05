@@ -43,9 +43,9 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    60 + 40 * randomizer.nextDouble(),
+                    100 + 40 * randomizer.nextDouble(),
                     // Sight angle
-                    45 + 55 * randomizer.nextDouble(),
+                    100 + 55 * randomizer.nextDouble(),
                     // Speed
                     20 + 50 * randomizer.nextDouble(),
                     // Edges number
@@ -65,9 +65,9 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    60 + 40 * randomizer.nextDouble(),
+                    100 + 40 * randomizer.nextDouble(),
                     // Sight angle
-                    45 + 55 * randomizer.nextDouble(),
+                    100 + 55 * randomizer.nextDouble(),
                     // Speed
                     20 + 50 * randomizer.nextDouble(),
                     // Edge size
@@ -85,9 +85,9 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    60 + 40 * randomizer.nextDouble(),
+                    100 + 40 * randomizer.nextDouble(),
                     // Sight angle
-                    45 + 55 * randomizer.nextDouble(),
+                    100 + 55 * randomizer.nextDouble(),
                     // Speed
                     20 + 50 * randomizer.nextDouble(),
                     // Edge size
@@ -105,9 +105,9 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    60 + 40 * randomizer.nextDouble(),
+                    100 + 40 * randomizer.nextDouble(),
                     // Sight angle
-                    45 + 55 * randomizer.nextDouble(),
+                    100 + 55 * randomizer.nextDouble(),
                     // Speed
                     20 + 50 * randomizer.nextDouble(),
                     // Radius
