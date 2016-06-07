@@ -43,7 +43,7 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    100 + 40 * randomizer.nextDouble(),
+                    200 + 40 * randomizer.nextDouble(),
                     // Sight angle
                     100 + 55 * randomizer.nextDouble(),
                     // Speed
@@ -65,7 +65,7 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    100 + 40 * randomizer.nextDouble(),
+                    200 + 40 * randomizer.nextDouble(),
                     // Sight angle
                     100 + 55 * randomizer.nextDouble(),
                     // Speed
@@ -85,7 +85,7 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    100 + 40 * randomizer.nextDouble(),
+                    200 + 40 * randomizer.nextDouble(),
                     // Sight angle
                     100 + 55 * randomizer.nextDouble(),
                     // Speed
@@ -105,7 +105,7 @@ public abstract class TurtleUtils
                     // Color
                     colors[randomizer.nextInt(colors.length)],
                     // Sight radius
-                    100 + 40 * randomizer.nextDouble(),
+                    200 + 40 * randomizer.nextDouble(),
                     // Sight angle
                     100 + 55 * randomizer.nextDouble(),
                     // Speed
