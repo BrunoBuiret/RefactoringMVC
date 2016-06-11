@@ -37,6 +37,16 @@ public class Herd implements Iterable<AbstractTurtle>
     }
     
     /**
+     * Gets the turtles composing the herd.
+     * 
+     * @return The turtles composing the herd. 
+     */
+    public Set<AbstractTurtle> getTurtles()
+    {
+        return this.turtles;
+    }
+    
+    /**
      * Adds a single turtle to the herd.
      * 
      * @param turtle The turtle to add.

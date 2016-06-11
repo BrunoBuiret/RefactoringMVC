@@ -144,27 +144,4 @@ public class CircularTurtle extends AbstractTurtle
         // Notify the observers
         this.notifyObservers();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void turnLeft(double angle)
-    {
-        // Memorize new direction
-        this.direction = (this.direction - angle) % 360;
-        
-        // Notify the observers
-        this.notifyObservers();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void turnRight(double angle)
-    {
-        // Make the turtle turn
-        this.turnLeft(-angle);
-    }
 }

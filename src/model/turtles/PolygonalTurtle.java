@@ -191,25 +191,12 @@ public class PolygonalTurtle extends AbstractTurtle
     {
         // Initialize affine transform
         AffineTransform transform = new AffineTransform();
-        transform.setToRotation(Math.toRadians(angle), this.x, this.y);
+        transform.setToRotation(Math.toRadians(-angle), this.x, this.y);
         
         // Perform affine transform
         this.shape.transform(transform);
         
         // Memorize new direction
-        this.direction = (this.direction - angle) % 360;
-        
-        // Notify the observers
-        this.notifyObservers();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void turnRight(double angle)
-    {
-        // Make the turtle turn
-        this.turnLeft(-angle);
+        super.turnLeft(angle);
     }
 }

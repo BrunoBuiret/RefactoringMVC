@@ -276,14 +276,25 @@ public abstract class AbstractTurtle
      * 
      * @param angle The angle to turn.
      */
-    public abstract void turnLeft(double angle);
+    public void turnLeft(double angle)
+    {
+        // Memorize new direction
+        this.direction = (this.direction - angle) % 360;
+        
+        // Notify the observers
+        this.notifyObservers();
+    }
     
     /**
      * Makes the turtle turn to the right.
      * 
      * @param angle The angle to turn.
      */
-    public abstract void turnRight(double angle);
+    public void turnRight(double angle)
+    {
+        // Make the turtle turn
+        this.turnLeft(-angle);
+    }
     
     /**
      * Adds an observer of this turtle.
@@ -311,6 +322,16 @@ public abstract class AbstractTurtle
     public void removeObservers()
     {
         this.observers.clear();
+    }
+    
+    /**
+     * Gets the list of this turtle's observers.
+     * 
+     * @return The list of observers.
+     */
+    public Set<TurtleObserverInterface> getObservers()
+    {
+        return this.observers;
     }
     
     /**
